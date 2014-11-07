@@ -1,0 +1,74 @@
+.card {
+    background-color: #fff;
+    padding: 10px;
+    @include border-radius(8px);
+    border:1px solid darken($bg-light, 5%);
+
+    .task-details {
+        padding-bottom:20px;
+        padding-right: 10px;
+        border-right: 1px solid darken($bg-light, 2%);
+
+        .task-images {
+            margin-top: 8px;
+            margin-bottom: 16px;
+
+            img {
+                height: 240px;
+                width: auto;
+            }
+
+            .img-select {
+                background-color: $bg-light;
+                padding: 1px 0 1px 6px;
+            }
+        }
+
+        .task-description {
+            .task-description-heading {
+                font-weight: 600;  
+            }
+
+            .icon-outside-link {
+                background-image: url("../images/icons-sprite.png");
+                background-position: -149px -184px;
+                width: 13px;
+                height: 13px;
+                display: inline-block;
+            }
+        }
+        
+        .task-action {
+            text-align: center; 
+            
+            .btn-flag {
+                padding: 3px 5px;
+                
+                &:hover {
+                    background-color: darken(#DEEDE8, 10%);
+                    border: 1px solid darken(#DEEDE8, 20%);
+                    border-bottom: 2px solid darken(#DEEDE8, 20%);
+                }
+            }
+        }
+    }
+    
+    .task-creation {
+        margin-left: -31px;
+        border-left: 1px solid darken($bg-light, 2%);
+        padding: 10px 0 10px 10px;
+
+        .task-creation-heading {
+            font-weight: 600;  
+        }
+
+        .task-creation-instructions {
+            font-style: italic;
+            color: lighten($bg-dark, 30%);
+            margin-top: 8px;
+            margin-bottom: 12px;
+        }  
+    }
+}
+
+    

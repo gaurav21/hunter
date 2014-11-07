@@ -1,0 +1,99 @@
+.sidebar {
+    background-color: $bg-dark;
+    width: 200px;
+    float: left;
+    position: fixed;
+    height: 100%;
+    padding: 10px;
+    z-index: 1;
+    
+    .icon-sidebar {
+        width: 22px;
+        height: 22px;
+        display: inline-block;
+        background-image: url("../images/icons-sprite.png");
+    }
+    
+    .icon-sidebar-leaderboard {
+        background-position: -214px -122px;
+        height: 18px;
+    }
+    
+    .icon-sidebar-perks {
+        background-position: -164px -119px;
+        height: 21px;
+    }
+    
+    .icon-sidebar-multiplier {
+        background-position: -117px -121px; 
+        height: 18px;
+    }
+    
+    .icon-sidebar-level {
+        background-position: -67px -117px;   
+    }
+    
+    .icon-sidebar-points {
+        background-position: -20px -117px;   
+    }
+    
+    .sidebar-section-row {
+        margin-bottom: 16px;
+        
+        .sidebar-section-row-content {
+            display: inline-block;
+            width: 154px;
+        }  
+    }
+    
+    .sidebar-section-heading {
+        color: #85918D;
+        font-weight: 600;
+    }
+    
+    .sidebar-section-value {
+        font-weight: 600;
+        color: #fff;
+    }
+    
+    .multiplier-bar {
+        width: 100px;
+        height: 6px;
+        background-color: #fff;
+    }
+    
+    .divider {
+        margin: 16px 0;
+       
+        hr {
+            margin-bottom: 2px;
+            margin-top: 0px;
+            border-color: #59646B;
+        }
+    }
+   
+    .perks li {
+        display: inline-block;
+        margin-right: 12px;
+        margin-bottom: 8px;
+    }
+   
+    .table {
+        color: #fff;
+        font-size: 11px;
+        border: none;
+        margin-bottom: 8px;
+       
+        td {
+            border: none;  
+        }
+    }
+   
+    .table-sidebar.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+        background-color: lighten($bg-dark, 2%);
+    }
+   
+    a {
+        color: #A8BBB4;
+    }
+}

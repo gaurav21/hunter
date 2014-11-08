@@ -2,7 +2,7 @@
     display: inline-block;
     width: 20px;
     height: 23px;
-    background-image: url("../images/icons-sprite.png");
+    background-image: url("/assets/icons-sprite.png");
     background-position: -60px -179px;
 }
 
@@ -10,7 +10,7 @@
     display: inline-block;
     width: 20px;
     height: 23px;
-    background-image: url("../images/icons-sprite.png");
+    background-image: url("/assets/icons-sprite.png");
     background-position: -17px -179px;
 }
 
@@ -18,7 +18,7 @@
     display: inline-block;
     width: 20px;
     height: 14px;
-    background-image: url("../images/icons-sprite.png");
+    background-image: url("/assets/icons-sprite.png");
     background-position: -206px -185px;
 }
 
@@ -26,7 +26,7 @@
     display: inline-block;
     width: 19px;
     height: 19px;
-    background-image: url("../images/icons-sprite.png");
+    background-image: url("/assets/icons-sprite.png");
     background-position: -235px -185px;
 }
 
@@ -34,7 +34,7 @@
     display: inline-block;
     width: 13px;
     height: 13px;
-    background-image: url("../images/icons-sprite.png");
+    background-image: url("/assets/icons-sprite.png");
     background-position: -180px -185px;
 }
 
@@ -42,7 +42,7 @@
     display: inline-block;
     width: 30px;
     height: 30px;
-    background-image: url("../images/icons-sprite.png");
+    background-image: url("/assets/icons-sprite.png");
     background-position: -253px -117px;
     border: 1px solid #85918D;
     @include border-radius(12px);
@@ -56,7 +56,7 @@
     display: inline-block;
     width: 30px;
     height: 30px;
-    background-image: url("../images/icons-sprite.png");
+    background-image: url("/assets/icons-sprite.png");
     background-position: -285px -116px;
     border: 1px solid $primary-color;
     @include border-radius(12px);

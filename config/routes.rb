@@ -1,14 +1,22 @@
 Hunter::Application.routes.draw do
-  root :to => "home#index"
+  root to: "home#index"
+  
   devise_for :users
-
+  resources :users
   devise_scope :user do
     get "/login" => "devise/sessions#new"
   end
   
   devise_scope :user do
-    delete "/logout" => "devise/sessions#destroy"
+    get "/logout" => "devise/sessions#destroy"
   end
+  
+  devise_for :users, :controllers => {:sessions => 'devise/sessions', :registrations => 'devise/registrations'} do       
+       match '/users/:id/dashboard', :to => "post#index", :as => :dashboard
+  end     
+
+  get "/signup" => "home#signup"
+  get "/post" => "post#index"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

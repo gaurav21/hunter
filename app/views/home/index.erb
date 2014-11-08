@@ -1,7 +1,8 @@
-<%#
-# To change this license header, choose License Headers in Project Properties.
-# To change this template file, choose Tools | Templates
-# and open the template in the editor.
-%>
-
-<%= "index" %>
+<% if user_signed_in? %>
+    Welcome: 
+    <%= link_to "Logout", destroy_user_session_path%>
+<% else %>
+    <%= render 'devise/sessions/form' %> 
+    <%= link_to "Login", new_user_session_path %>
+<% end %>
+<hr>

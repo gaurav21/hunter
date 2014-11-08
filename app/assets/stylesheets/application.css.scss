@@ -1,3 +1,4 @@
+
 @import "libraries/mixins";
 @import "libraries/variables";
 @import "vendor/bootstrap.scss";
@@ -9,11 +10,11 @@
 
 
 /*global styles*/
-@font-face {
+/*@font-face {
   font-family: 'Glyphicons Halflings';
   src: url('../fonts/glyphicons-halflings-regular.eot');
   src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
-}
+}*/
 
 body {
     font-family: 'Open Sans', sans-serif;
@@ -388,7 +389,7 @@ h6 {font-size: 11px;}
     input.form-control.input-search {
         @include border-radius(5px);
         height: 26px; 
-        background-image: url("../images/icons-sprite.png");
+        background-image: url('/assets/icons-sprite.png');
         background-position: -240px -209px;
         padding-right: 36px;
     }
@@ -410,7 +411,7 @@ h6 {font-size: 11px;}
     display: inline-block;
     width: 65px;
     height: 39px;
-    background-image: url("../images/icons-sprite.png");
+    background-image: url('/assets/icons-sprite.png');
     background-position: -243px -166px;
 }
 
@@ -418,7 +419,7 @@ h6 {font-size: 11px;}
     display: inline-block;
     width: 65px;
     height: 39px;
-    background-image: url("../images/icons-sprite.png");
+    background-image: url('/assets/icons-sprite.png');
     background-position: -243px -166px;
 }
 

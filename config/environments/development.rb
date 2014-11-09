@@ -36,4 +36,7 @@ Hunter::Application.configure do
   config.assets.debug = true
   
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  
+  # Precompile additional assets
+  #config.assets.precompile += %w( .svg .eot .woff .ttf )
 end

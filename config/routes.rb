@@ -1,8 +1,11 @@
 Hunter::Application.routes.draw do
+  get "tasks/tasks"
+
   root to: "home#index"
   
   devise_for :users
   resources :users
+  resources :tasks
   devise_scope :user do
     get "/login" => "devise/sessions#new"
   end

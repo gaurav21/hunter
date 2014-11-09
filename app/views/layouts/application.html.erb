@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Hunter App</title>
       <%= stylesheet_link_tag    "application", :media => "all" %>
-      <%#*<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>%>
       <%= javascript_include_tag "jquery-1.10.2.min" %>
+      <%= javascript_include_tag "bootstrap" %>
       <%= javascript_include_tag "application" %>
       <%= csrf_meta_tags %>
 
@@ -77,12 +77,12 @@
                 </li>
                 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle dropdown-user" data-toggle="dropdown">Gaurav <span class="caret"></span>
+                    <a href="#" class="dropdown-toggle dropdown-user" data-toggle="dropdown"><%= current_user.name%>  <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="task-history.html">Task History</a></li>
                         <li><a href="#">Settings</a></li>
-                        <li><a href="#">Logout</a></li>
+                        <li><%= link_to "Logout", destroy_user_session_path%></li>
                     </ul>
                 </li>
             </ul>
@@ -186,5 +186,172 @@
     </div>
 <%= yield %>
 
+  
+      <!-- perks modal -->
+    <div class="modal fade" id="perks-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h1 class="modal-title">Add a Perk</h1>
+          </div>
+          <div class="modal-body">
+            <table class="table table-app perks-table" id="perks-table">
+              <tr>
+                <td><i class="perk-image"></i></td>
+                <td>
+                  <h3 class="perk-title">Perk Title</h3>
+                  <p class="perk-description">Perk description lorem ipsum dolor sit amet consectetur</p>
+                </td>
+                <td><i class="icon-points-darkgrey"></i>1000</td>
+              </tr>
+              <tr>
+                <td><i class="perk-image"></i></td>
+                <td>
+                  <h3 class="perk-title">Perk Title</h3>
+                  <p class="perk-description">Perk description lorem ipsum dolor sit amet consectetur</p>
+                </td>
+                <td><i class="icon-points-darkgrey"></i>1000</td>
+              </tr>
+              <tr>
+                <td><i class="perk-image"></i></td>
+                <td>
+                  <h3 class="perk-title">Perk Title</h3>
+                  <p class="perk-description">Perk description lorem ipsum dolor sit amet consectetur</p>
+                </td>
+                <td><i class="icon-points-darkgrey"></i>1000</td>
+              </tr>
+              <tr>
+                <td><i class="perk-image"></i></td>
+                <td>
+                  <h3 class="perk-title">Perk Title</h3>
+                  <p class="perk-description">Perk description lorem ipsum dolor sit amet consectetur</p>
+                </td>
+                <td><i class="icon-points-darkgrey"></i>1000</td>
+              </tr>
+              <tr>
+                <td><i class="perk-image"></i></td>
+                <td>
+                  <h3 class="perk-title">Perk Title</h3>
+                  <p class="perk-description">Perk description lorem ipsum dolor sit amet consectetur</p>
+                </td>
+                <td><i class="icon-points-darkgrey"></i>1000</td>
+              </tr>
+              <tr>
+                <td><i class="perk-image"></i></td>
+                <td>
+                  <h3 class="perk-title">Perk Title</h3>
+                  <p class="perk-description">Perk description lorem ipsum dolor sit amet consectetur</p>
+                </td>
+                <td><i class="icon-points-darkgrey"></i>1000</td>
+              </tr>
+              <tr>
+                <td><i class="perk-image"></i></td>
+                <td>
+                  <h3 class="perk-title">Perk Title</h3>
+                  <p class="perk-description">Perk description lorem ipsum dolor sit amet consectetur</p>
+                </td>
+                <td><i class="icon-points-darkgrey"></i>1000</td>
+              </tr>
+            </table>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    
+    <!-- end of perks modal -->
+    
+    <!-- cashout modal -->
+    <div class="modal fade" id="cashout-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h1 class="modal-title">Cashout</h1>
+          </div>
+          <div class="modal-body">
+            <table class="table table-app perks-table" id="perks-table">
+              <tr>
+                <td class="wide-cell">
+                  <h1>$1</h1>
+                </td>
+                <td><i class="icon-points-darkgrey"></i>1000</td>
+              </tr>
+              <tr>
+                <td class="wide-cell">
+                  <h1>$2</h1>
+                </td>
+                <td><i class="icon-points-darkgrey"></i>1000</td>
+              </tr>
+              <tr>
+                <td class="wide-cell">
+                  <h1>$5</h1>
+                </td>
+                <td><i class="icon-points-darkgrey"></i>1000</td>
+              </tr>
+              <tr>
+                <td class="wide-cell">
+                  <h1>$10 <span class="bonus-text">+$100 bonus</span></h1>
+                </td>
+                <td><i class="icon-points-darkgrey"></i>1000</td>
+              </tr>
+              <tr>
+                <td class="wide-cell">
+                  <h1>$20 <span class="bonus-text">+$100 bonus</span></h1>
+                </td>
+                <td><i class="icon-points-darkgrey"></i>1000</td>
+              </tr>
+            </table>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    
+    <!-- end of cashout modal -->
+    
+    <!-- task image modal -->
+    <div class="modal fade task-images-modal" id="task-images-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h1 class="modal-title">Task Photos</h1>
+          </div>
+          <div class="modal-body">
+            <div id="task-images-carousel-inmodal" class="carousel slide" data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#task-images-carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#task-images-carousel" data-slide-to="1"></li>
+                <li data-target="#task-images-carousel" data-slide-to="2"></li>
+              </ol>
+
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+                <div class="item active">
+                  <img src="http://www.allthedresses.net/wp-content/uploads/2014/03/Emroidered-Midi-Dress.jpg" alt="...">
+                </div>
+                <div class="item">
+                  <img src="http://www.thefashionpolice.net/wp-content/uploads/2013/01/ASOS-Skater-Dress-With-Pink-Beading.jpg" alt="...">
+                </div>
+                <div class="item">
+                  <img src="http://media.royalcaribbean.com/content/shared_assets/images/ports/hero/LGK_01.jpg" alt="...">
+                </div>
+              </div>
+
+              <!-- Controls -->
+              <a class="left carousel-control" href="#task-images-carousel-inmodal" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+              </a>
+              <a class="right carousel-control" href="#task-images-carousel-inmodal" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+              </a>
+        </div>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    
+    <!-- end of task image modal -->
 </body>
 </html>

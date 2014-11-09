@@ -39,16 +39,16 @@
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Business</a></li>
                                 </ul>
                             </div>
-                            <div class="dropdown dropdown-app">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                                More
-                                <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">...</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">...</a></li>
-                                </ul>
-                            </div>
+                            <%#*<div class="dropdown dropdown-app">%>
+                                <%#*<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">%>
+                                <%#*More%>
+                                <%#*<span class="caret"></span>%>
+                                <%#*</button>%>
+                                <%#*<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">%>
+                                    <%#*<li role="presentation"><a role="menuitem" tabindex="-1" href="#">...</a></li>%>
+                                    <%#*<li role="presentation"><a role="menuitem" tabindex="-1" href="#">...</a></li>%>
+                                <%#*</ul>%>
+                            <%#*</div>%>
                         </div>
                         <div class="pull-right">
                             <button class="btn btn-secondary-sm" id="btn-previous-card">Previous</button>
@@ -63,7 +63,11 @@
                             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             <img src=<%= asset_path 'check.png'%>> &nbsp;You have completed 3 tasks successfully. Complete <span class="notification-emphasis">10 tasks</span> and you have a chance to <span class="notification-emphasis-color">win 250 extra points</span>.
                         </div>
-    
+                      <pre id="tesettt">
+<%= @task %>
+
+                      </pre>
+                        
                         <div class="card" id="card">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">

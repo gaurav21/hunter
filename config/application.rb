@@ -58,5 +58,8 @@ module Hunter
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    # Add the fonts path
+#    config.assets.paths << "#{Rails}/app/assets/fonts"
   end
 end

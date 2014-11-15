@@ -61,5 +61,6 @@ module Hunter
     
     # Add the fonts path
 #    config.assets.paths << "#{Rails}/app/assets/fonts"
+config.assets.initialize_on_precompile = false
   end
 end

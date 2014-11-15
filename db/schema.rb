@@ -13,83 +13,93 @@
 
 ActiveRecord::Schema.define(:version => 1) do
 
-  create_table "questionoptions", :force => true do |t|
-    t.integer "questionid"
-    t.string  "title",              :limit => 245
+  create_table "question_options", :force => true do |t|
+    t.integer "question_id"
+    t.string  "title",                :limit => 245
     t.integer "status"
-    t.string  "questionoptionscol", :limit => 45
+    t.string  "question_options_col", :limit => 45
   end
 
-  add_index "questionoptions", ["questionid"], :name => "options_question_fk1_idx"
+  add_index "question_options", ["question_id"], :name => "options_question_fk1_idx"
 
-  create_table "taskcompetition", :force => true do |t|
-    t.integer "taskid"
-    t.integer "currentassignee"
-    t.integer "status"
-    t.string  "taskcompetitioncol", :limit => 45
-    t.integer "userpostid"
+  create_table "task_competitions", :force => true do |t|
+    t.integer  "task_id"
+    t.integer  "currentassignee"
+    t.integer  "status"
+    t.string   "task_competition_col", :limit => 45
+    t.integer  "user_post_id"
+    t.datetime "created_at"
   end
 
-  add_index "taskcompetition", ["taskid"], :name => "comp_task_fk1_idx"
-  add_index "taskcompetition", ["userpostid"], :name => "comp_post_fk1_idx"
+  add_index "task_competitions", ["task_id"], :name => "comp_task_fk1_idx"
+  add_index "task_competitions", ["user_post_id"], :name => "comp_post_fk1_idx"
 
-  create_table "taskquestions", :force => true do |t|
-    t.integer  "taskid"
-    t.string   "title",       :limit => 500
+  create_table "task_questions", :force => true do |t|
+    t.integer  "task_id"
+    t.string   "title",      :limit => 500
     t.integer  "type_flag"
-    t.datetime "createddate"
+    t.datetime "created_at"
   end
 
-  add_index "taskquestions", ["taskid"], :name => "question_task_fk1_idx"
+  add_index "task_questions", ["task_id"], :name => "question_task_fk1_idx"
 
   create_table "tasks", :force => true do |t|
-    t.string   "name",                                     :null => false
-    t.integer  "type_flag",                                :null => false
-    t.integer  "source",                                   :null => false
-    t.string   "instructions",       :limit => 5000,       :null => false
-    t.text     "description",        :limit => 2147483647
+    t.string   "name",                                       :null => false
+    t.integer  "type_flag",                                  :null => false
+    t.integer  "source",                                     :null => false
+    t.string   "instructions",         :limit => 5000,       :null => false
+    t.text     "description",          :limit => 2147483647
     t.string   "url"
     t.integer  "responsecap"
     t.datetime "deadline"
     t.float    "reward"
     t.integer  "flagged"
-    t.datetime "createddate"
-    t.datetime "updateddate"
-    t.integer  "createdby"
-    t.integer  "industrycategoryid"
-    t.string   "client",             :limit => 245
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "industry_category_id"
+    t.string   "client",               :limit => 245
+    t.integer  "status"
   end
 
-  create_table "tasksphotos", :force => true do |t|
-    t.string   "imagename",   :limit => 245
-    t.integer  "taskid"
-    t.string   "status",      :limit => 45
-    t.datetime "createddate"
+  create_table "tasks_photos", :force => true do |t|
+    t.string   "imagename",  :limit => 245
+    t.integer  "task_id"
+    t.string   "status",     :limit => 45
+    t.datetime "created_at"
   end
 
-  add_index "tasksphotos", ["taskid"], :name => "taskphoto_tasks_fk_1_idx"
+  add_index "tasks_photos", ["task_id"], :name => "taskphoto_tasks_fk_1_idx"
 
-  create_table "userevaluate", :force => true do |t|
-    t.integer  "taskid"
+  create_table "user_evaluates", :force => true do |t|
+    t.integer  "task_id"
     t.text     "answers"
-    t.string   "createdby",   :limit => 45
-    t.datetime "createddate"
+    t.string   "user_id"
+    t.datetime "created_at"
   end
 
-  add_index "userevaluate", ["createdby"], :name => "evaluate_user_fk1_idx"
-  add_index "userevaluate", ["taskid"], :name => "evaluate_task_fk1_idx"
+  add_index "user_evaluates", ["task_id"], :name => "evaluate_task_fk1_idx"
+  add_index "user_evaluates", ["user_id"], :name => "evaluate_user_fk1_idx"
 
-  create_table "userpost", :force => true do |t|
-    t.integer  "taskid"
-    t.integer  "photoid"
-    t.text     "description", :limit => 16777215
-    t.integer  "createdby"
-    t.datetime "createddate"
+  create_table "user_posts", :force => true do |t|
+    t.integer  "task_id"
+    t.integer  "tasks_photo_id"
+    t.text     "description",    :limit => 16777215
+    t.integer  "user_id"
+    t.datetime "created_at"
   end
 
-  add_index "userpost", ["createdby"], :name => "post_user_fk1_idx"
-  add_index "userpost", ["photoid"], :name => "post_photo_fk1_idx"
-  add_index "userpost", ["taskid"], :name => "post_task_fk1_idx"
+  add_index "user_posts", ["task_id"], :name => "post_task_fk1_idx"
+  add_index "user_posts", ["tasks_photo_id"], :name => "post_photo_fk1_idx"
+  add_index "user_posts", ["user_id"], :name => "post_user_fk1_idx"
+
+  create_table "user_votes", :force => true do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+  end
+
+  add_index "user_votes", ["user_id"], :name => "vote_user_fk1_idx"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -109,13 +119,5 @@ ActiveRecord::Schema.define(:version => 1) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "uservote", :force => true do |t|
-    t.integer  "taskid"
-    t.integer  "createdby"
-    t.datetime "createddate"
-  end
-
-  add_index "uservote", ["createdby"], :name => "vote_user_fk1_idx"
 
 end

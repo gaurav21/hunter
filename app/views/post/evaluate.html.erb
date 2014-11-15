@@ -17,7 +17,7 @@
                                 </ul>
                             </div>
                             <div class="dropdown dropdown-app">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"><i class="icon-points-darkgrey"></i> 100+ 
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"><i class="icon-points-darkgrey"></i> 100+
                                 <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
@@ -39,36 +39,31 @@
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Business</a></li>
                                 </ul>
                             </div>
-                            <%#*<div class="dropdown dropdown-app">%>
-                                <%#*<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">%>
-                                <%#*More%>
-                                <%#*<span class="caret"></span>%>
-                                <%#*</button>%>
-                                <%#*<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">%>
-                                    <%#*<li role="presentation"><a role="menuitem" tabindex="-1" href="#">...</a></li>%>
-                                    <%#*<li role="presentation"><a role="menuitem" tabindex="-1" href="#">...</a></li>%>
-                                <%#*</ul>%>
-                            <%#*</div>%>
+                            <div class="dropdown dropdown-app">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                                More
+                                <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">...</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">...</a></li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="pull-right">
-                            <button class="btn btn-secondary-sm" id="btn-previous-card">Previous</button>
+                            <button class="btn btn-secondary-sm">Previous</button>
                             &nbsp;
-                            <button class="btn btn-secondary-sm" id="btn-next-card">Next</button>
+                            <button class="btn btn-secondary-sm">Next</button>
                         </div>
                         <div class="clearfix"></div>
                     </div>
+                    
                     <div class="main-content-body">
-                        
                         <div class="alert alert-success alert-dismissible notification" role="alert">
                             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <img src=<%= asset_path 'check.png'%>> &nbsp;You have completed 3 tasks successfully. Complete <span class="notification-emphasis">10 tasks</span> and you have a chance to <span class="notification-emphasis-color">win 250 extra points</span>.
+                            <img src="assets/images/check.png"> &nbsp;You have completed 3 tasks successfully. Complete <span class="notification-emphasis">10 tasks</span> and you have a chance to <span class="notification-emphasis-color">win 250 extra points</span>.
                         </div>
-                      <pre id="tesettt">
-<%= @task %>
-
-                      </pre>
-                        
-                        <div class="card" id="card">
+                        <div class="card">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="task-details">
@@ -126,10 +121,50 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="task-creation">
-                                        <h3 class="task-creation-heading">Create Facebook Post</h3>
+                                        <h3 class="task-creation-heading">Select the Best Answer and Comment</h3>
                                         <p class="task-creation-instructions">Instructions from retailer. Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor amet ipsum</p>
                                         <form class="form response-form" role="form">
-                                            <textarea class="form-control" class="form-control" rows="10" placeholder="Write your response here..."></textarea>
+                                            <p class="option-heading">Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor amet ipsum</p>
+                                            <div class="radio">
+                                              <label>
+                                                <input type="radio" name="optionsRadios" id="option1" value="option1" checked>
+                                                Option 1 Lorem Ipsum Dolors
+                                              </label>
+                                            </div>
+                                            <div class="radio">
+                                              <label>
+                                                <input type="radio" name="optionsRadios" id="option2" value="option2">
+                                                Option 2 Ipsum
+                                              </label>
+                                            </div>
+                                            <div class="radio">
+                                              <label>
+                                                <input type="radio" name="optionsRadios" id="option3" value="option3">
+                                                Option 3 Lorem Ipsum
+                                              </label>
+                                            </div>
+                                            <div class="radio">
+                                              <label>
+                                                <input type="radio" name="optionsRadios" id="option4" value="option3">
+                                                Option 4 Dolors
+                                              </label>
+                                            </div>
+                                            <div class="option-comment">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing </p>                 
+                                                <textarea class="form-control" rows="4" placeholder="Comments for option 1.."></textarea>
+                                            </div>
+                                            <div class="option-comment">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing </p>                 
+                                                <textarea class="form-control" rows="4" placeholder="Comments for option 2.."></textarea>
+                                            </div>
+                                            <div class="option-comment">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing </p>                 
+                                                <textarea class="form-control" rows="4" placeholder="Comments for option 3.."></textarea>
+                                            </div>
+                                            <div class="option-comment">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing </p>                 
+                                                <textarea class="form-control" rows="4" placeholder="Comments for option 4.."></textarea>
+                                            </div>
                                             <br>
                                             <button type="submit" class="btn btn-primary pull-right submit-response"><span class="glyphicon glyphicon-ok"></span> &nbsp;Done</button>
                                         </form>

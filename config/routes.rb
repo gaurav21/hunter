@@ -1,11 +1,12 @@
 Hunter::Application.routes.draw do
-  get "tasks/tasks"
 
   root to: "home#index"
   
   devise_for :users
   resources :users
   resources :tasks
+  resources :tasksphotos
+  resources :user_post
   devise_scope :user do
     get "/login" => "devise/sessions#new"
   end
@@ -13,13 +14,25 @@ Hunter::Application.routes.draw do
   devise_scope :user do
     get "/logout" => "devise/sessions#destroy"
   end
-  
-  devise_for :users, :controllers => {:sessions => 'devise/sessions', :registrations => 'devise/registrations'} do       
-       match '/users/:id/dashboard', :to => "post#index", :as => :dashboard
-  end     
+  authenticated :user do
+  root to: "post#new"
+end
+
+unauthenticated do
+  root to: "registrations#new", :as => "unauthenticated"
+end    
 
   get "/signup" => "home#signup"
-  get "/post" => "post#index"
+  get "/post" => "post#new"
+  
+  get "/edit" => "post#edit"
+  get "/evaluate" => "post#evaluate"
+  get "/vote" => "vote#index"
+  
+  
+  post "/post", to: "post#create"
+  
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

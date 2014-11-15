@@ -1,0 +1,153 @@
+<script>
+  $(document).ready(function() {
+    var template = $('#task').html();
+    Mustache.parse(template);   // optional, speeds up future uses
+    //var json = parseJSON();
+    var rendered = Mustache.render(template, JSON.parse($('#taskid').html()));
+    $('#card').html(rendered);
+    $('.carousel-inner').children().first().addClass('active')
+  });
+</script>
+
+  
+<div class="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="main-content-header-fixed">
+                        <div class="pull-left">
+                            <div class="dropdown dropdown-app">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                                Facebook Posts
+                                <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Linkedin Posts</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Twitter Posts</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Google+ Posts</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Other Posts</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown dropdown-app">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"><i class="icon-points-darkgrey"></i> 100+ 
+                                <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">200+</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">300+</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">400+</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">500+</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown dropdown-app">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                                Fashion
+                                <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Health</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Education</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Travel</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Business</a></li>
+                                </ul>
+                            </div>
+                            <%#*<div class="dropdown dropdown-app">%>
+                                <%#*<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">%>
+                                <%#*More%>
+                                <%#*<span class="caret"></span>%>
+                                <%#*</button>%>
+                                <%#*<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">%>
+                                    <%#*<li role="presentation"><a role="menuitem" tabindex="-1" href="#">...</a></li>%>
+                                    <%#*<li role="presentation"><a role="menuitem" tabindex="-1" href="#">...</a></li>%>
+                                <%#*</ul>%>
+                            <%#*</div>%>
+                        </div>
+                        <div class="pull-right">
+                            <button class="btn btn-secondary-sm" id="btn-previous-card">Previous</button>
+                            &nbsp;
+                            <button class="btn btn-secondary-sm" id="btn-next-card">Next</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="main-content-body">
+                        
+                        <div class="alert alert-success alert-dismissible notification" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <img src=<%= asset_path 'check.png'%>> &nbsp;You have completed 3 tasks successfully. Complete <span class="notification-emphasis">10 tasks</span> and you have a chance to <span class="notification-emphasis-color">win 250 extra points</span>.
+                        </div>
+                      <pre id="taskid">
+                        <%= @task %>
+                      </pre>
+                      
+                      <div class="card" id="card">
+                        
+                      </div>
+                      <script id="task" type="text/html">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="task-details">
+                                        <section class="task-details-header">
+                                            <div class="pull-left"><h2 class="darkgreen-heading"><i class="icon-points-darkgreen"></i><span>{{reward}} Points</span></h2></div>
+                                            <div class="pull-right"><h3><a href="#"><i class="icon-flag"></i></a></h3></div>
+                                            <span class="clearfix"></span>
+                                        </section>
+                                        <section class="task-images">
+                                            <div id="task-images-carousel" class="carousel slide" data-ride="carousel">
+                                                  <!-- Indicators -->
+                                                  <ol class="carousel-indicators">
+                                                    <li data-target="#task-images-carousel" data-slide-to="0" class="active"></li>
+                                                    <li data-target="#task-images-carousel" data-slide-to="1"></li>
+                                                    <li data-target="#task-images-carousel" data-slide-to="2"></li>
+                                                  </ol>
+
+                                                  <!-- Wrapper for slides -->
+                                                  <div class="carousel-inner">
+                                                    {{#photos}}
+                                                    <div class="item" >
+                                                      <img id="{{id}}" src="{{imagename}}" alt="...">
+                                                    </div>
+                                                    {{/photos}}
+                                                  </div>
+
+                                                  <!-- Controls -->
+                                                  <a class="left carousel-control" href="#task-images-carousel" role="button" data-slide="prev">
+                                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                                  </a>
+                                                  <a class="right carousel-control" href="#task-images-carousel" role="button" data-slide="next">
+                                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                                  </a>
+                                            </div>
+                                            <div class="img-select">
+                                                <div class="checkbox">
+                                                  <label>
+                                                    <input type="checkbox" value="">Selected for the post
+                                                  </label>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <section class="task-description">
+                                          <h2 class="task-description-heading">{{name}} <input type="text" style="display: none" value="{{id}}" id="post_id"> </h2> 
+                                            <br>
+                                            <p class="task-description-text">{{description}}</p>
+                                            <h5><a href="{{url}}">View in Retailer's Shop <i class="icon-outside-link"></i></a></h5>
+                                        </section>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="task-creation">
+                                        <h3 class="task-creation-heading">Create Facebook Post</h3>
+                                        <p class="task-creation-instructions">{{instructions}}</p>
+                                        <form class="form response-form" role="form">
+                                            <textarea id="post_text" class="form-control" class="form-control" rows="10" placeholder="Write your response here..."></textarea>
+                                            <br>
+                                            <div class="btn btn-primary pull-right submit-response" onclick="submitPost(this);"><span class="glyphicon glyphicon-ok"></span> &nbsp;Done</div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                      </script> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

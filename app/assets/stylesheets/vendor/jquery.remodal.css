@@ -1,0 +1,180 @@
+@import url(http://fonts.googleapis.com/css?family=Exo+2:700,400&subset=latin,cyrillic);
+
+/* ==========================================================================
+   Remodal necessary styles
+   ========================================================================== */
+
+/* Hide scroll bar */
+
+html.remodal_lock,
+body.remodal_lock {
+    overflow: hidden;
+}
+
+/* Anti FOUC */
+
+.remodal,
+[data-remodal-id] {
+    visibility: hidden;
+}
+
+/* Overlay necessary styles */
+
+.remodal-overlay {
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: none;
+    overflow: auto;
+
+    text-align: center;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+.remodal-overlay:after {
+    display: inline-block;
+
+    height: 100%;
+    margin-left: -0.05em;
+
+    content: "";
+}
+
+/* Fix iPad, iPhone glitches */
+
+.remodal-overlay {
+    -webkit-backface-visibility: hidden;
+}
+
+/* Modal dialog necessary styles */
+
+.remodal {
+    position: relative;
+
+    display: inline-block;
+}
+
+/* Remodal anti-zoom. Font-size should be >= 16px. */
+
+.remodal select,
+.remodal textarea,
+.remodal input,
+.remodal select:focus,
+.remodal textarea:focus,
+.remodal input:focus {
+    font-size: 16px;
+}
+
+/* ==========================================================================
+   Remodal default theme
+   ========================================================================== */
+
+/* Background for effects */
+
+.remodal-bg {
+    -webkit-transition: -webkit-filter 0.5s linear;
+    -moz-transition: -moz-filter 0.5s linear;
+    -o-transition: -o-filter 0.5s linear;
+    transition: filter 0.5s linear;
+}
+
+body.remodal_active .remodal-bg {
+    -webkit-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+}
+
+/* Overlay default theme styles */
+
+.remodal-overlay {
+    -webkit-transition: opacity 0.5s ease;
+    -moz-transition: opacity 0.5s ease;
+    -o-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+
+    opacity: 0;
+    background: rgba(33, 36, 46, 0.55);
+}
+
+body.remodal_active .remodal-overlay {
+    opacity: 1;
+}
+
+/* Modal dialog default theme styles */
+
+.remodal {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100%;
+    padding: 35px;
+
+    -webkit-transition: -webkit-transform 0.5s ease;
+    -moz-transition: -moz-transform 0.5s ease;
+    -o-transition: -o-transform 0.5s ease;
+    transition: transform 0.5s ease;
+    
+    top: -200px;
+
+    background: #f4f4f4;
+    background-clip: padding-box;
+    -webkit-box-shadow: 0 0 8px #171a24;
+    box-shadow: 0 0 8px #171a24;
+}
+
+body.remodal_active .remodal {
+
+    -webkit-transform: translateY(200px);
+    -moz-transform: translateY(200px);
+    -ms-transform: translateY(200px);
+    -o-transform: translateY(200px);
+    transform: translateY(200px);
+}
+
+/* Modal dialog vertical align  */
+
+.remodal,
+.remodal-overlay:after {
+    vertical-align: middle;
+}
+
+
+
+/* Media queries
+   ========================================================================== */
+
+@media only screen and (min-width: 40.063em) /* min-width 641px */ {
+    .remodal {
+        max-width: 500px;
+        min-height: 0;
+        margin: 20px auto;
+    }
+}
+
+/* IE8
+   ========================================================================== */
+
+html.lt-ie9,
+html.lt-ie9 body {
+    overflow: auto !important;
+
+    min-height: 100%;
+    margin: 0;
+}
+
+.lt-ie9 .remodal-overlay {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUAQMAAAC3R49OAAAAA3NCSVQICAjb4U/gAAAABlBMVEX///8AAABVwtN+AAAAAnRSTlMAuyogpzwAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzbovLKMAAAAGHRFWHRDcmVhdGlvbiBUaW1lADA2LzEwLzIwMTSCx1nsAAAAD0lEQVQImWP4//8DAxUxACnDOpkfX95WAAAAAElFTkSuQmCC);
+}
+
+.lt-ie9 .remodal {
+    width: 500px;
+    min-height: auto;
+}

@@ -41,3 +41,4 @@ gem 'jquery-rails'
 
 gem 'devise'
 gem 'autoprefixer-rails'
+gem "font-awesome-rails"

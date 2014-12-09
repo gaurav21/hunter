@@ -24,6 +24,7 @@ end
 
   get "/signup" => "home#signup"
   get "/post" => "post#new"
+  get "/tasks" => "tasks#index"
   
   get "/edit" => "post#edit"
   get "/evaluate" => "post#evaluate"
@@ -31,6 +32,7 @@ end
   
   
   post "/post", to: "post#create"
+  
   
   
   

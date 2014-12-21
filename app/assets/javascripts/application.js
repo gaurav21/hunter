@@ -9,7 +9,13 @@
   });
 
   $('.selectable').on("click", function() {
-    return $(this).toggleClass('selected');
+    $(this).toggleClass('selected');
+    if ($('#pageid').val() == 1) {
+       reloadtaskdata();     
+    } else {
+        reloadVotes();
+    }
+    
   });
 
   $(function() {
@@ -36,11 +42,12 @@ function submitPost(id) {
                        user_id: $('#current_user_id').html()}
                    },
                 success:function(data){
-                    $('.submit-response').html("Done");
+                    location.reload();
                    },
                    error: function(data) { // if error occured
-                         alert("Error occured.please try again");
-                         alert(data);
+//                         alert("Error occured.please try again");
+//                         alert(data);
+location.reload();
                     }
                   });
             } else {
@@ -53,3 +60,155 @@ function submitPost(id) {
         }
 }
 
+
+function reloadtaskdata() {
+    //filters :
+    var reward = [];
+    var qualification = [];
+    var category = [];
+    $('.selected').each(function() { 
+        var id = this.id.split('_');
+        if (id[0] === 'reward') {
+            reward.push(id[1]);
+        } else if (id[0] === 'qualification') {
+            qualification.push(id[1]);
+        } else if (id[0] === 'category') {
+            category.push(id[1]);
+        }
+    });
+    
+    //ajax request to load the data
+    
+    $.ajax({
+                   type: 'POST',
+                   url: '/tasks#index',
+                   data: {
+                       reward : reward,
+                       qualification : qualification,
+                       category : category,
+                       userid : $('#current_user_id').html()
+                   },
+                success:function(json){
+                    var template = $('#card').html();
+                    Mustache.parse(template);   // optional, speeds up future uses
+                    //var json = JSON.parse(data);
+                    var rendered = Mustache.render(template, json);
+                    $('#task-cards-veche').html(rendered);
+                   },
+                   error: function(data) { // if error occured
+//                         alert("Error occured.please try again");
+//                         alert(data);
+location.reload();
+                    }
+                  });
+}
+
+    var votePost = function(id) {
+        var votes = [];
+        $('.card-vote').each(function(){ 
+            votes.push($(this).attr('id'));
+        });
+        var lostid;
+        console.log(votes + ' sdf ' + lostid );
+        for (var i = 0 ; i < votes.length; i ++ ) {
+            console.log(votes[i] + ' sdf ' + id );
+            if (votes[i] != id) {
+                lostid = votes[i];
+                break;
+            }
+        }
+        console.log(votes + ' sdf ' + lostid );
+        $.ajax({
+                   type: 'POST',
+                   url: '/votefortask',
+                   data: {
+                       wonid : id,
+                       lostid: lostid,
+                       userid : $('#current_user_id').html()
+                   },
+                success:function(json){
+                    console.log(json);
+                    location.reload();
+                   // reloadVotes();
+//                    if (json === 1) {
+//                        
+//                    }
+                   },
+                   error: function(data) { // if error occured
+                       //  alert("Error occured.please try again");
+                        // alert(data);
+                        reloadVotes();
+                    }
+                  });
+}
+
+var reloadVotes = function() {
+    //filters :
+    var reward = [];
+    var qualification = [];
+    var category = [];
+    $('.selected').each(function() { 
+        var id = this.id.split('_');
+        if (id[0] === 'reward') {
+            reward.push(id[1]);
+        } else if (id[0] === 'qualification') {
+            qualification.push(id[1]);
+        } else if (id[0] === 'category') {
+            category.push(id[1]);
+        }
+    });
+    
+    //ajax request to load the data
+   
+    $.ajax({
+                   type: 'POST',
+                   url: '/vote',
+                   data: {
+                       reward : reward,
+                       qualification : qualification,
+                       category : category,
+                       userid : $('#current_user_id').html()
+                   },
+                success:function(json){
+                    var template = $('#card').html();
+                    Mustache.parse(template);   // optional, speeds up future uses
+                    //var json = JSON.parse(data);
+                    var rendered = Mustache.render(template, json);
+                    $('#task-cards-veche').html(rendered);
+                   },
+                   error: function(data) { // if error occured
+                         alert("Error occured.please try again");
+                         alert(data);
+                    }
+                  });
+}
+
+var fetchPointsWon = function() {
+    
+    
+    
+        $.ajax({
+                   type: 'POST',
+                   url: '/vote',
+                   data: {
+                       reward : reward,
+                       qualification : qualification,
+                       category : category,
+                       userid : $('#current_user_id').html()
+                   },
+                success:function(json){
+                    var template = $('#points').html();
+                    Mustache.parse(template);   // optional, speeds up future uses
+                    //var json = JSON.parse(data);
+                    var rendered = Mustache.render(template, json);
+                    $('#points_notification_id').html(rendered);
+                   },
+                   error: function(data) { // if error occured
+                         alert("Error occured.please try again");
+                         alert(data);
+                    }
+                  });
+    
+    
+
+}

@@ -5,7 +5,8 @@ Hunter::Application.routes.draw do
   devise_for :users
   resources :users
   resources :tasks
-  resources :tasksphotos
+  resources :vote
+#  resources :tasksphotos
   resources :user_post
   devise_scope :user do
     get "/login" => "devise/sessions#new"
@@ -15,7 +16,7 @@ Hunter::Application.routes.draw do
     get "/logout" => "devise/sessions#destroy"
   end
   authenticated :user do
-  root to: "post#new"
+  root to: "tasks#index"
 end
 
 unauthenticated do
@@ -24,16 +25,16 @@ end
 
   get "/signup" => "home#signup"
   get "/post" => "post#new"
-  get "/tasks" => "tasks#index"
-  
-  get "/edit" => "post#edit"
-  get "/evaluate" => "post#evaluate"
-  get "/vote" => "vote#index"
-  
-  
   post "/post", to: "post#create"
   
+  get "/vote" => "vote#index"
+  post "/vote", to: "vote#create"
+  post "/votefortask", to: "vote#votefortask"
   
+  get "/leaderboard" => "leader_board#index"
+  post "/fetchPointsDetails" => "user_reward#create"
+  
+  get "/profile" => "profile#index"
   
   
   # The priority is based upon order of creation:

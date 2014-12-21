@@ -1,5 +1,5 @@
 class PostController < ApplicationController
-  before_filter :authenticate_user!
+#  before_filter :authenticate_user!
   layout "post"
   def new
     @sql = "select * from tasks t where t.status =1 and t.type_flag = 1
@@ -23,7 +23,7 @@ class PostController < ApplicationController
     if @post.save()
       respond_to do |format|
          format.json { render json: @cnt.to_s + " 123sf " + @task.responsecap.to_s, status: :created  }
-      end   
+      end
     end 
 
    end

@@ -1,0 +1,178 @@
+<!-- Content wrapper -->
+      <div id="content-wrapper">
+        <div class="container-fluid">
+
+          <!-- Sidebar -->
+          <div class="sidebar">
+          </div> <!-- End of Sidebar -->
+
+          <!-- Shadow Bar -->
+          <div class="shadow-bar"></div> <!-- End of Shadow Bar -->
+
+          <!-- Main Content -->
+          <div class="main-content">
+            <span id="ldrs" style="display: none;"><%= @ldrs%> </span>
+            <!-- Left Veche -->
+            <div id="task-cards-veche" class="left-veche">
+              <div class="card card-profile">
+                <h3 class="card-header swatch2">
+                  Leaderboard
+                </h3>
+                <div class="card-profile-body">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th><i class="fa fa-user"></i></th>
+                        <th><i class="fa fa-star"></i></th>
+                        <th><i class="fa fa-dollar"></i></th>
+                        <th><i class="fa fa-database"></i></th>
+                        <th><i class="fa fa-trophy"></i></th>
+                      </tr>
+                    </thead>
+                    <tbody id="leader_body">
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div> <!-- End of Left Veche -->
+
+            <!-- Right Veche -->
+            <div id="filter-veche" class="right-veche">
+              <!-- Search Card -->
+              <div class="card card-search">
+                <h4 class="card-header">Search</h4>
+                <ul class="nav v-list">
+                  <li>
+                    <div class="col-md-12">
+                      <form>
+                        <input class="search" type="text" name="firstname">
+                      </form>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <!-- Filters Card -->
+              <div class="card card-filters">
+                <h4 class="card-header">Filters</h4>
+                <ul class="nav v-list">
+                  <li>
+                    <a><span class="level"><i class="fa fa-star"></i></span> Level<span class="pull-right"><i class="fa fa-chevron-down"></i></span></a>
+                      <ul class="nav v-list">
+                        <li>
+                          <a class="selectable selected">
+                            <span class="level">
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star disabled"></i>
+                              <i class="fa fa-star disabled"></i>
+                            </span>
+                            <span class="pull-right">
+                              <i class="fa fa-check-square"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a class="selectable selected">
+                            <span class="level">
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star disabled"></i>
+                            </span>
+                            <span class="pull-right">
+                              <i class="fa fa-check-square"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a class="selectable selected">
+                            <span class="level">
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                            </span>
+                            <span class="pull-right">
+                              <i class="fa fa-check-square"></i>
+                            </span>
+                          </a>
+                        </li>
+                      </ul>
+                  </li>
+                  <li><a><i class="fa fa-clock-o"></i> Time<span class="pull-right"><i class="fa fa-chevron-down"></i></span></a>
+                    <ul class="nav v-list">
+                      <li>
+                        <a class="selectable selected">All Time<span class="pull-right"><i class="fa fa-check-square"></i></span></a>
+                      </li>
+                      <li>
+                        <a class="selectable">4 Weeks<span class="pull-right"><i class="fa fa-check-square"></i></span></a>
+                      </li>
+                      <li>
+                        <a class="selectable">1 Week<span class="pull-right"><i class="fa fa-check-square"></i></span></a>
+                      </li>
+                      <li>
+                        <a class="selectable">1 Day<span class="pull-right"><i class="fa fa-check-square"></i></span></a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div><!-- End of Filters Card -->
+
+            </div> <!-- End of Right Veche -->
+
+          </div> <!-- End of Main Content -->
+        </div> 
+      </div> <!-- End of-->
+      <script id="leader">
+        {{#.}}
+        <tr>
+          <td>{{index}}</td>
+          <td>{{name}}</td>
+          <td>
+            <span class="level">
+            {{{level}}}
+            </span>
+          </td>
+          <td>${{dollor_val}}</td>
+          <td>{{total_reward}}</td>
+          <td>25%</td>
+        </tr>
+        {{/.}}
+      </script>  
+      
+      <script>
+  $(document).ready(function() {
+//      var template = $('#leader').html();
+  //    Mustache.parse(template);   // optional, speeds up future uses
+      var json = JSON.parse($('#ldrs').html());
+      console.log(render(json));
+    //  var rendered = Mustache.render(template, json);
+      $('#leader_body').html(render(json));
+      
+  });
+  var render = function(json) {
+    var html = '';
+    for (var i=0; i < json.length; ++i) {
+      var t = i +1;
+       html += '<tr>';
+          html += '<td>'+t+'</td>';
+          html += '<td>'+ json[i].name+ '</td>';
+          html += '<td><span class="level">';
+          var j=0;
+          while(j < json[i].user_tier) {
+            html = html + "<i class='fa fa-star'></i>"
+            j = j +1
+          }
+          while(j < 3) {
+            html = html + "<i class='fa fa-star disabled'></i>"
+            j = j +1
+          }
+            
+          html += '</span></td>';
+          html += '<td>' + json[i].dollor_val + '</td>';
+          html += '<td>' + json[i].total_reward + '</td>';
+          html += '<td>25%</td></tr>';
+          
+    }
+    return html;
+  }
+      </script>      

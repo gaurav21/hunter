@@ -1,0 +1,249 @@
+<div class="main-content">
+
+            <!-- Left Veche --> 
+            <div id="profile-cards-veche" class="left-veche">
+              <h2><span class="avatar"><%= if  current_user != nil 
+                current_user.name[0] 
+                end%></span> <%= if  current_user != nil 
+                current_user.name 
+                end%></h2>
+              <!-- Overview Card -->
+              <div class="card card-profile">
+                <!-- Card Header -->
+                <h3 class="card-header swatch1">
+                  Overview
+                </h3> <!-- End of card header -->
+                <!-- Card Body -->
+                <div class="card-profile-body">
+                  <!-- Profile highlights row 1 -->
+                  <div class="row">
+                    <div class="data-highlight">
+                      <i class="fa fa-check-square-o"></i>
+                      <p>Votes</p>
+                      <p id="data-highlight-total-votes" class="data-value">
+                        <%=
+                        UserVote.where('user_id = ? ', current_user.id).count
+                        %>
+                      </p>
+                    </div>
+                    <div class="data-highlight">
+                      <i class="fa fa-edit"></i>
+                      <p>Responses</p>
+                      <p id="data-highlight-total-responses" class="data-value">
+                        <%= UserPost.where('user_id = ? ', current_user.id).count %>
+                      </p>
+                    </div>
+                    <div class="data-highlight spotlight">
+                      <i class="fa fa-dashboard"></i>
+                      <p>Personal Rating</p>
+                      <p id="data-highlight-rating" class="data-value">
+                       <%= User.where('id = ?', current_user.id).first().total_reward %> 
+                      </p>
+                    </div>
+                    <div class="data-highlight">
+                      <i class="fa fa-database"></i>
+                      <p>Points Earned</p>
+                      <p id="data-highlight-cumulative-points" class="data-value">1024</p>
+                    </div>
+                    <div class="data-highlight">
+                      <i class="fa fa-dollar"></i>
+                      <p>Earnings</p>
+                      <p id="data-highlight-cumulative-cash" class="data-value">$512</p>
+                    </div>
+                  </div> <!-- End of Profile Highlights Row 1 -->
+                  
+                  <!-- Profile Highlights Row 2 -->
+                    <div class="histogram-toggle">
+                      <div class="toggle-option">
+                        <p>Votes Won/Lost</p>
+                        <p id="data-highlight-vote-success-percentage" class="spotlight">52%</p>
+                        <p id="data-highlight-vote-success-ratio" class="disabled">104/200</p>
+                      </div>
+                      <div class="toggle-option active">
+                        <p>Votes Won/Lost</p>
+                        <p id="data-highlight-vote-success-percentage" class="spotlight">52%<span class="arrow-left pull-right"></span></p>
+                        <p id="data-highlight-vote-success-ratio" class="disabled">104/200</p>
+                      </div>
+                    </div>
+                    <div class="histogram">
+
+                    </div>
+                </div> <!-- End of card body -->
+              </div> <!-- End of Overview Card -->
+
+              <!-- Achievements Card -->
+              <div class="card card-profile">
+                <!-- Card Header -->
+                <h3 class="card-header swatch2">
+                  Achievements <span id="data-highlight-achievement-ratio">3/<span class="disabled">158</span></span>
+                </h3> <!-- End of card header -->
+
+                <!-- Card Body -->
+                <div class="card-profile-body">
+                  <div class="row">
+                    <a href="#" class="medal">
+                      <i class="fa fa-trophy"></i>
+                    </a>
+                    <a href="#" class="medal">
+                      <i class="fa fa-trophy"></i>
+                    </a>
+                    <a href="#" class="medal">
+                      <i class="fa fa-trophy"></i>
+                    </a>
+                    <a href="#" class="medal disabled">
+                      <i class="fa fa-trophy"></i>
+                    </a>
+                    <a href="#" class="medal disabled">
+                      <i class="fa fa-trophy"></i>
+                    </a>
+                    <a href="#" class="medal disabled">
+                      <i class="fa fa-trophy"></i>
+                    </a>
+                  </div>
+                  <a class="btn btn-default">
+                    See All <i class="fa fa-chevron-circle-down"></i> 
+                  </a>
+                </div><!-- End of Card Body -->
+              </div> <!-- End of Achievements Card -->
+
+              <!-- Ratings Card -->
+              <div class="card card-profile">
+                <!-- Card Header -->
+                <h3 class="card-header swatch3">
+                  Ratings
+                </h3> <!-- End of card header -->
+
+                <!-- Card Body -->
+                <div class="card-profile-body">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Ratings</th>
+                        <th>Value</th>
+                        <th>Rank</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Votes Won</td>
+                        <td>52%</td>
+                        <td>505</td>
+                      </tr>
+                      <tr>
+                        <td>Votes Won</td>
+                        <td>52%</td>
+                        <td>505</td>
+                      </tr>
+                      <tr>
+                        <td>Votes Won</td>
+                        <td>52%</td>
+                        <td>505</td>
+                      </tr>
+                      <tr>
+                        <td>Votes Won</td>
+                        <td>52%</td>
+                        <td>505</td>
+                      </tr>
+                      <tr>
+                        <td>Votes Won</td>
+                        <td>52%</td>
+                        <td>505</td>
+                      </tr>
+                      <tr>
+                        <td>Votes Won</td>
+                        <td>52%</td>
+                        <td>505</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div><!-- End of Card Body -->
+              </div> <!-- End of Ratings Card -->
+            </div> <!-- End of Left Veche -->
+
+            <!-- Right Veche -->
+            <div id="top-tens-veche" class="right-veche">
+              <div class="card card-topten">
+                <h4 class="card-header">Top 5 Users <span class="pull-right"><i class="fa fa-trophy"></i></span></h4>
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>RiuRiu Ru</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Bluce Ding</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Klamel Wang</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>Lock Ree</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>Lorem Ipsum</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="card card-topten">
+                <h4 class="card-header">Top 5 Voters <span class="pull-right"><i class="fa fa-check-square-o"></i></span></h4>
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>RiuRiu Ru</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Bluce Ding</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Klamel Wang</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>Lock Ree</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>Lorem Ipsum</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="card card-topten">
+                <h4 class="card-header">Top 5 Submitters <span class="pull-right"><i class="fa fa-edit"></i></span></h4>
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>RiuRiu Ru</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Bluce Ding</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Klamel Wang</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>Lock Ree</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>Lorem Ipsum</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div> <!-- End of Right Veche -->
+
+
+          </div> <!-- End of Main Content -->

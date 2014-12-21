@@ -14,7 +14,7 @@
       <%= javascript_include_tag "mustache" %>
       <%= javascript_include_tag "jquery.remodal" %>
       <%= javascript_include_tag "metismenu" %>
-      <%= javascript_include_tag "application" %>
+
   
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -49,17 +49,31 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <!-- Left Navbar -->
             <ul class="nav navbar-nav navbar-left">
-              <li class="active"><a href="tasks.html">Tasks</a></li>
-              <li><a href="vote.html">Voting</a></li>
+              <li class="active"><a href="tasks">Tasks</a></li>
+              <li><a href="vote">Voting</a></li>
             </ul> <!-- End of left navbar -->
 
             <!-- Right Navbar -->
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
                 <a href="#" class="level dropddown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star disabled"></i>
-                  <i class="fa fa-star disabled"></i>
+                  <%=
+                  tier = 0
+                    if current_user.user_tier != nil
+                      tier = current_user.user_tier 
+                    end  
+                    i =0
+                    str = ''
+                    while i < tier
+                      str = str + '<i class="fa fa-star"></i>'
+                      i = i +1
+                    end
+                    while i < 3
+                      str = str +  '<i class="fa fa-star disabled"></i>'
+                      i = i +1
+                    end
+                    str.html_safe
+                  %>
                 </a>
                 <ul class="dropdown-menu dropdown-level">
                     <li>
@@ -98,19 +112,22 @@
               <li class="dropdown">
                 <a href="#" class="points-counter dropddown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                   <i class="fa fa-database"></i>
-                  <span class="counter-digit">
-                    0
-                  </span><span class="counter-digit">
-                    0
-                  </span><span class="counter-digit">
-                    1
-                  </span><span class="counter-digit">
-                    3
-                  </span><span class="counter-digit">
-                    0
-                  </span>
+                  <%= 
+                  str = ''
+                  
+                  points = User.where('id = ?', current_user.id).first().total_reward
+                  if points == nil
+                  points = 0
+                  end  
+                  pointsArr = points.to_s.split('')
+                  pointsArr.each {
+                    |x| str = str + '<span class="counter-digit">' + x + '</span>'
+                    }
+                  str.html_safe
+                %>
+
                 </a>
-                <ul class="dropdown-menu dropdown-notifications">
+                <ul class="dropdown-menu dropdown-notifications" id="points_notification_id" onclick="fetchPointsWon();">
                   <li>
                     <a href="#">
                       <div>
@@ -156,8 +173,12 @@
                 </ul>
               </li>
               <li id="profile">
-                <a href="profile.html"><span class="avatar"><%= current_user.name[0] %></span></a>
-                <span id="current_user_id" style="display: none;"><%= current_user.id   %></span>
+                <a href="profile"><span class="avatar"><%= if  current_user != nil 
+                current_user.name[0] 
+                end%></span></a>
+                <span id="current_user_id" style="display: none;"><%= if  current_user != nil  
+                current_user.id   
+        end %></span>
               </li>
               <li class="dropdown" id="moar">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-caret-down"></i></a>
@@ -165,7 +186,7 @@
                   <li><a href="#"><i class="fa fa-clock-o"></i> History</a></li>
                   <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
                   <li class="divider"></li>
-                  <li><a href="#"><i class="fa fa-sign-out"></i> Sign Out</a></li>
+                  <li><a href="/users/sign_out"><i class="fa fa-sign-out"></i> Sign Out</a></li>
                 </ul>
               </li>
             </ul> <!-- End of right nav bar -->
@@ -181,7 +202,7 @@
           <ul class="nav navbar-nav navbar-left">
             <li><a href="#modal"><i class="fa fa-dollar"></i> Withdraw Cash</a></li>
             <li><a href="#modal"><i class="fa fa-star"></i> Achievements</a></li>
-            <li><a href="leaderboard.html"><i class="fa fa-trophy"></i> Leaderboard</a></li>
+            <li><a href="leaderboard"><i class="fa fa-trophy"></i> Leaderboard</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#modal"><i class="fa fa-coffee"></i></a></li>
@@ -243,6 +264,18 @@
     </div><!-- End of Withdraw Cash Modal -->
     
     
-    
-
+          <%= javascript_include_tag "application" %>
+    <script id="points">
+      {{#.}}
+          <li>
+            <a href="#">
+              <div>
+              {{text}} <span class="small text-muted">({{time}})</span>
+                <span class="pull-right points"><i class="fa fa-database"></i> {{reward}}</span>
+              </div>
+            </a>
+          </li>
+          <li class="divider"></li>
+          {{/.}}
+    </script>  
 </body>

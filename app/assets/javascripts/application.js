@@ -21,7 +21,7 @@
   $(function() {
     return $('.v-list').metisMenu();
   });
-
+  jQuery("abbr.timeago").timeago();
 
 }).call(this);
 
@@ -189,23 +189,20 @@ var fetchPointsWon = function() {
     
         $.ajax({
                    type: 'POST',
-                   url: '/vote',
-                   data: {
-                       reward : reward,
-                       qualification : qualification,
-                       category : category,
-                       userid : $('#current_user_id').html()
-                   },
+                   url: '/fetchPointsDetails',
                 success:function(json){
-                    var template = $('#points').html();
+                    console.log(json);
+                                        var template = $('#points').html();
                     Mustache.parse(template);   // optional, speeds up future uses
                     //var json = JSON.parse(data);
                     var rendered = Mustache.render(template, json);
                     $('#points_notification_id').html(rendered);
+                    jQuery("abbr.timeago").timeago();
                    },
                    error: function(data) { // if error occured
-                         alert("Error occured.please try again");
-                         alert(data);
+//                         alert("Error occured.please try again");
+//                         alert(data);
+console.log(data);
                     }
                   });
     

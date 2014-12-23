@@ -14,6 +14,7 @@
       <%= javascript_include_tag "mustache" %>
       <%= javascript_include_tag "jquery.remodal" %>
       <%= javascript_include_tag "metismenu" %>
+      <%= javascript_include_tag "jquery.timeago" %>
 
   
     <!--[if lt IE 9]>
@@ -110,7 +111,7 @@
                 </ul>
               </li>
               <li class="dropdown">
-                <a href="#" class="points-counter dropddown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <a href="#" onclick="fetchPointsWon()" class="points-counter dropddown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                   <i class="fa fa-database"></i>
                   <%= 
                   str = ''
@@ -127,16 +128,8 @@
                 %>
 
                 </a>
-                <ul class="dropdown-menu dropdown-notifications" id="points_notification_id" onclick="fetchPointsWon();">
-                  <li>
-                    <a href="#">
-                      <div>
-                        Voted for the winner <span class="small text-muted">(4 min)</span>
-                        <span class="pull-right points"><i class="fa fa-database"></i> 250</span>
-                      </div>
-                    </a>
-                  </li>
-                  <li class="divider"></li>
+                <ul class="dropdown-menu dropdown-notifications" id="points_notification_id">
+                  
                   <li>
                     <a href="#">
                       <div>
@@ -264,14 +257,14 @@
     </div><!-- End of Withdraw Cash Modal -->
     
     
-          <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "application" %>
     <script id="points">
       {{#.}}
           <li>
             <a href="#">
               <div>
-              {{text}} <span class="small text-muted">({{time}})</span>
-                <span class="pull-right points"><i class="fa fa-database"></i> {{reward}}</span>
+              {{title}} <span class="small text-muted">( <abbr class="timeago" title="{{created_at}}">{{created_at}}</abbr>)</span>
+                <span class="pull-right points"><i class="fa fa-database"></i> {{total_amt}}</span>
               </div>
             </a>
           </li>

@@ -19,7 +19,7 @@ $(function() {
     $(this).toggleClass('selected');
     if ($('#pageid').val() == 1) {
        reloadtaskdata();     
-    } else {
+    } else if ($('#pageid').val() == 2) {
         reloadVotes();
     }
     
@@ -215,4 +215,24 @@ console.log(data);
     
     
 
+}
+
+var purchaseperk = function(id) {
+    $.ajax({
+                   type: 'POST',
+                   url: '/purchaseperks',
+                   data : {
+                       'id' : id
+                   },
+                success:function(json){
+                    console.log(json);
+                    location.reload();
+                   },
+                   error: function(data) { // if error occured
+//                         alert("Error occured.please try again");
+//                         alert(data);
+console.log(data);
+location.reload();
+                    }
+                  });
 }

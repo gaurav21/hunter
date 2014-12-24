@@ -33,6 +33,7 @@ end
   
   get "/leaderboard" => "leader_board#index"
   post "/fetchPointsDetails" => "user_reward#create"
+  post "/purchaseperks" => "user_reward#purchaseperks"
   
   get "/profile" => "profile#index"
   

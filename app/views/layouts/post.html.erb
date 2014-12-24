@@ -85,8 +85,8 @@
                                   <span class="pull-right text-muted">100% Complete</span>
                               </p>
                               <div class="progress progress-striped active">
-                                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="1" style="width: 100%">
-                                      <span class="sr-only">40% Complete (success)</span>
+                                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="10" style="width: 100%">
+                                      <span class="sr-only">0% Complete (success)</span>
                                   </div>
                               </div>
                           </div>
@@ -161,14 +161,28 @@
         <div class="container-fluid">
           <ul class="nav navbar-nav navbar-left">
             <li><a href="#modal"><i class="fa fa-dollar"></i> Withdraw Cash</a></li>
-            <li><a href="#modal"><i class="fa fa-star"></i> Achievements</a></li>
+            <li><a href="#achievements-modal"><i class="fa fa-star"></i> Achievements</a></li>
             <li><a href="leaderboard"><i class="fa fa-trophy"></i> Leaderboard</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#modal"><i class="fa fa-coffee"></i></a></li>
-            <li><a href="#modal"><i class="fa fa-birthday-cake"></i></a></li>
-            <li><a href="#modal"><i class="fa fa-rocket"></i></a></li>
-            <li><a id="perk-store" href="#modal"><span>+</span></a></li>
+            <%=
+            str = ''
+            userperks = Perk.where('perks.status = 1 and user_id = ?', current_user.id).joins('inner join user_perks up on up.perk_id = perks.id and up.status = 1 ')
+              #UserPerk.where('user_perks.status = 1 and user_id = ? ', current_user.id).joins('inner join perks on perks.id = user_perks.perk_id')
+            
+            for userperk in userperks
+              str = str + '<li><a data-original-title="' + userperk.name + '" href="#" tabindex="0" 
+                   role="button" data-toggle="popover" data-trigger="focus" 
+                   title="" data-placement="bottom" 
+                   data-content="' + userperk.description + '">
+                  <i class="fa ' + userperk.symbol + '"></i>
+              </a>
+            </li> '
+            end  
+            str.html_safe
+            %>
+
+            <li><a id="perk-store" href="#perk-store-modal"><span>+</span></a></li>
           </ul>
          </div>
       </div> <!-- End of Subnavigation Bar -->
@@ -223,6 +237,67 @@
       </div><!-- End of Modal Footer -->
     </div><!-- End of Withdraw Cash Modal -->
     
+      <!-- Perks Store Modal -->
+    <div class="remodal" data-remodal-id="perk-store-modal">
+      <h2>Get Perks<a class="pull-right remodal-cancel"><i class="fa fa-close"></i></a></h2>
+      <!-- Modal Body -->
+      <div class="remodal-body">
+        <table class="table table-xl">
+          <tbody>
+            <%=
+            perks = Perk.where('status = 1')
+            str = ''
+            for perk in perks
+             str = str + '<tr class="selectable"><td><i class="fa fa-trophy"></i></td>'
+             str = str +  '<td><h3>' + perk.name + '</h3><p>' + perk.description + '</p></td>'
+            str = str +  '<td><span class="points pull-right"><i class="fa fa-database"></i>+'+ perk.cost_formula + '</span></tr>'
+            end
+            str.html_safe
+            %>
+          </tbody>
+        </table>
+      </div><!-- End of Modal Body -->
+      <!-- Modal Footer -->
+      <div class="remodal-footer">
+        <div class="checkout-info">
+          Total cost: 
+          <span class="points"> <i class="fa fa-database"></i> 0</span>
+        </div>
+        <a class="pull-right btn btn-primary remodal-confirm" href="#">Commit</a>
+      </div><!-- End of Modal Footer -->
+    </div><!-- End of Purchase Tasks Modal -->
+    
+    
+        <!-- Achievements Modal -->
+    <div class="remodal" data-remodal-id="achievements-modal">
+      <h2>My Achievements<a class="pull-right remodal-cancel"><i class="fa fa-close"></i></a></h2>
+      <!-- Modal Body -->
+      <div class="remodal-body">
+        <table class="table table-xl">
+          <tbody>
+            <%=
+            achievements = Achievement.where('status = 1')
+            str = ''
+            for achievement in achievements
+                cnt = UserAchievement.where('user_id = ? and achievement_id = ?', current_user.id ,achievement.id).count
+                
+                if cnt > 0
+                  str = str + '<tr class="disable">'
+                end
+                if cnt == 0
+                  str = str + '<tr class="selectable">'
+                end
+                str = str + '<td><i class="fa fa-trophy"></i></td>
+              <td><h3>' + achievement.name + '</h3><p>' + achievement.description + '</p></td>
+              <td><span class="points pull-right"><i class="fa fa-database"></i> +' + achievement.fixed_reward.to_s + '</span>
+            </tr>'
+              end
+            str.html_safe
+            %>
+          </tbody>
+        </table>
+      </div><!-- End of Modal Body -->
+    </div><!-- End of Achievements Modal -->
     
     <%= javascript_include_tag "application" %>
     <script id="points">

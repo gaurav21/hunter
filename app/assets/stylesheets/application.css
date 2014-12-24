@@ -5658,6 +5658,10 @@ button.close {
     position: relative;
     top: 1px; }
 
+.popover-title {
+  background: none;
+  width: 500px; }
+
 /* ----- Border Radius ----- */
 /* ----- Effects ----- */
 /* ----- Colors ----- */
@@ -6030,7 +6034,7 @@ h3.card-header .disabled {
 /* ---- colors ----- */
 /* ----- sizes ----- */
 /* ----- effects ----- */
-.wrapper-lg, .sidebar .card-wrapper, .card-task-action-header, .card-vote .card-vote-copy, .card-profile .card-profile-body, .main-content {
+.wrapper-lg, .sidebar .card-wrapper, .popover, .card-task-action-header, .card-vote .card-vote-copy, .card-profile .card-profile-body, .main-content {
   padding: 32px; }
 
 .wrapper-md, .card-task .card-task-copy, .card-task .card-task-info, input[type=textarea].copy-entry {

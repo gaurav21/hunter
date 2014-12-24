@@ -4,6 +4,13 @@
 
   $('.navbar .navbar-right li').tooltip(animation = true);
 
+$(function() {
+    var $pt;
+    $pt = '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div><a href="#" class="btn btn-default">Activate</a></div>';
+    return $('[data-toggle="popover"]').popover({
+      template: $pt
+    });
+  });
   $(document).on('scroll', function() {
     return $('.shadow-bar').toggleClass('show-shadow', $(this).scrollTop() > 0);
   });
